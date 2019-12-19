@@ -1,4 +1,4 @@
-package com.example.spring_first.models;
+package com.example.spring_first.models.dto;
 
 public class BaseResponse {
 

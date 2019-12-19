@@ -1,8 +1,7 @@
 package com.example.spring_first.controllers;
 
 import com.example.spring_first.constants.Status;
-import com.example.spring_first.models.BaseResponse;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.example.spring_first.models.dto.BaseResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

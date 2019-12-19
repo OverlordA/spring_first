@@ -1,8 +1,8 @@
 package com.example.spring_first.controllers;
 
 import com.example.spring_first.constants.Status;
-import com.example.spring_first.models.BaseResponse;
-import com.example.spring_first.models.PaymentRequest;
+import com.example.spring_first.models.dto.BaseResponse;
+import com.example.spring_first.models.dto.PaymentRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
