@@ -10,5 +10,4 @@ import java.util.List;
 interface UsersRepo extends CrudRepository<UserEntity, Long>{
 
     List<UserEntity> findAllBy();
-
 }
