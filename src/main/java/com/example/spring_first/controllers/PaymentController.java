@@ -1,6 +1,7 @@
 package com.example.spring_first.controllers;
 
-import com.example.spring_first.constants.Status;
+import com.example.spring_first.constants.ResponseStatus;
+import com.example.spring_first.constants.ResponseStatusCode;
 import com.example.spring_first.models.dto.BaseResponse;
 import com.example.spring_first.models.dto.PaymentRequest;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ public class PaymentController {
 
     @GetMapping
     public BaseResponse showStatus() {
-        return new BaseResponse(Status.SUCCESS_STATUS, 1);
+        return new BaseResponse(ResponseStatus.SUCCESS_STATUS, 1);
     }
 
     @PostMapping("/pay")
@@ -28,9 +29,9 @@ public class PaymentController {
             // Process the request
             // ....
             // Return success response to the client.
-            response = new BaseResponse(Status.SUCCESS_STATUS, Status.CODE_SUCCESS);
+            response = new BaseResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS);
         } else {
-            response = new BaseResponse(Status.ERROR_STATUS, Status.AUTH_FAILURE);
+            response = new BaseResponse(ResponseStatus.ERROR_STATUS, ResponseStatusCode.AUTH_FAILURE);
         }
         return response;
     }
