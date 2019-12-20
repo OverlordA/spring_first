@@ -2,17 +2,17 @@ package com.example.spring_first.models.dto;
 
 import javax.persistence.criteria.CriteriaBuilder;
 
-public class RegisterUserResponse extends BaseResponse{
+public class UserResponse extends BaseResponse{
 
     private Long id;
     private String username;
     private String email;
 
-    public RegisterUserResponse(String status, Integer code) {
+    public UserResponse(String status, Integer code) {
         super(status, code);
     }
 
-    public RegisterUserResponse(String status, Integer code, String username, String email){
+    public UserResponse(String status, Integer code, String username, String email){
         super(status, code);
         this.username = username;
         this.email = email;

@@ -7,21 +7,30 @@ import com.example.spring_first.repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
+
 @Service
 public class UserService {
 
     private final UsersRepo userRepo;
+    private final HashService hashService;
 
     @Autowired
-    public UserService(UsersRepo userRepo){
+    public UserService(UsersRepo userRepo, HashService hashService){
         this.userRepo = userRepo;
+        this.hashService = hashService;
     }
 
 
-    public User registerUser(RegisterUserRequest userRequest){
-        UserEntity userEntity = new UserEntity(userRequest.getUsername(), userRequest.getPassword(), userRequest.getEmail());
+    public User registerUser(RegisterUserRequest userRequest) throws NoSuchAlgorithmException {
+        String passwordHash = hashService.calculateHash(userRequest.getPassword());
+        UserEntity userEntity = new UserEntity(userRequest.getUsername(), passwordHash, userRequest.getEmail());
         userRepo.save(userEntity);
         return new User(userEntity.getUsername(), userEntity.getEmail());
+    }
+    public List<UserEntity> getAllUser(){
+       return userRepo.findAllBy();
     }
 
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.NoSuchAlgorithmException;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -23,14 +25,14 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public RegisterUserResponse regUser(@RequestBody RegisterUserRequest registerUserRequest){
+    public UserResponse regUser(@RequestBody RegisterUserRequest registerUserRequest){
         try{
            User user = userService.registerUser(registerUserRequest);
-            return new RegisterUserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS,user.getUsername(), user.getEmail());
-        }catch (Error error){
+            return new UserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS,user.getUsername(), user.getEmail());
+        }catch (Error | NoSuchAlgorithmException error){
             System.out.println(error.getMessage());
         }
-        return new RegisterUserResponse(ResponseStatus.ERROR_STATUS, ResponseStatusCode.AUTH_FAILURE);
+        return new UserResponse(ResponseStatus.ERROR_STATUS, ResponseStatusCode.INVALID_DATA);
     }
 
     @PostMapping("/login")
