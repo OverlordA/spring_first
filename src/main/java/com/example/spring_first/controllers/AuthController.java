@@ -4,6 +4,7 @@ import com.example.spring_first.constants.ResponseStatus;
 import com.example.spring_first.constants.ResponseStatusCode;
 import com.example.spring_first.models.User;
 import com.example.spring_first.models.dto.*;
+import com.example.spring_first.services.AuthService;
 import com.example.spring_first.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +19,11 @@ import java.security.NoSuchAlgorithmException;
 public class AuthController {
 
     private final UserService userService;
+    private final AuthService authService;
 
     @Autowired
-    public AuthController(UserService userService){
+    public AuthController(UserService userService, AuthService authService){
+        this.authService = authService;
         this.userService = userService;
     }
 
@@ -35,8 +38,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginUserResponse loginUser(@RequestBody LoginUserRequest loginUserRequest){
-        return new LoginUserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS);
+    public LoginUserResponse loginUser(@RequestBody LoginUserRequest loginUserRequest) throws NoSuchAlgorithmException {
+       return authService.loginUser(loginUserRequest);
     }
 
     @PostMapping("/logout")

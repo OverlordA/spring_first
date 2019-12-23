@@ -8,5 +8,8 @@ import java.util.List;
 
 @Repository
 public interface UsersRepo extends CrudRepository<UserEntity, Long>{
+
     List<UserEntity> findAllBy();
+
+    UserEntity findByUsername(String username);
 }
