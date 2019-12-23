@@ -27,8 +27,7 @@ public class AuthController {
     @PostMapping("/registration")
     public UserResponse regUser(@RequestBody RegisterUserRequest registerUserRequest){
         try{
-           User user = userService.registerUser(registerUserRequest);
-            return new UserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS,user.getUsername(), user.getEmail());
+           return userService.registerUser(registerUserRequest);
         }catch (Error | NoSuchAlgorithmException error){
             System.out.println(error.getMessage());
         }
