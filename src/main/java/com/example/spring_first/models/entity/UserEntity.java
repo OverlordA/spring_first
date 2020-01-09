@@ -1,6 +1,7 @@
 package com.example.spring_first.models.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="users")
@@ -11,9 +12,11 @@ public class UserEntity {
     private Long id;
 
     @Column(name="username")
+    @NotEmpty
     private String username;
 
     @Column(name="password")
+    @NotEmpty
     private String password;
 
     @Column(name="email")
