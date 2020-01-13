@@ -1,17 +1,11 @@
 package com.example.spring_first.controllers;
 
-import com.example.spring_first.constants.ResponseStatus;
-import com.example.spring_first.constants.ResponseStatusCode;
 import com.example.spring_first.models.dto.UserResponse;
-import com.example.spring_first.models.entity.UserEntity;
 import com.example.spring_first.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -24,8 +18,8 @@ public class UserController {
         this.userService = userservice;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<UserResponse> getAllUsers(){
-        return ResponseEntity.ok(userService.getAllUser());
+    @RequestMapping(value = "/all", method= RequestMethod.GET)
+    public  ResponseEntity<UserResponse> getAllUsers(){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
     }
 }
