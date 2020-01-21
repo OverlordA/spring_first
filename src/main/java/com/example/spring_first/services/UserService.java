@@ -7,6 +7,7 @@ import com.example.spring_first.models.dto.RegisterUserRequest;
 import com.example.spring_first.models.dto.UserResponse;
 import com.example.spring_first.models.entity.UserEntity;
 import com.example.spring_first.repository.UsersRepo;
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +51,7 @@ public class UserService {
     public UserResponse getUser(Long id ) {
         UserResponse userResponse = new UserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS);
         Optional<UserEntity> userOptional = userRepo.findById(id);
-        UserEntity user = userOptional.get();
+        UserEntity user = Optional.ofNullable(userOptional).map( value -> value.get()).orElse( new UserEntity());
         List<User> user1 = new ArrayList<>();
         user1.add(new User(user.getId(),user.getUsername(), user.getEmail()));
         userResponse.setUsers(user1);
