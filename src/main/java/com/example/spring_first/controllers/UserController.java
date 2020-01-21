@@ -22,4 +22,9 @@ public class UserController {
     public  ResponseEntity<UserResponse> getAllUsers(){
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserResponse> getUserById(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(id));
+    }
 }
