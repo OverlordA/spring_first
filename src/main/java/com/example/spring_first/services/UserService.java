@@ -2,6 +2,7 @@ package com.example.spring_first.services;
 
 import com.example.spring_first.constants.ResponseStatus;
 import com.example.spring_first.constants.ResponseStatusCode;
+import com.example.spring_first.exceptions.BaseException;
 import com.example.spring_first.models.User;
 import com.example.spring_first.models.dto.RegisterUserRequest;
 import com.example.spring_first.models.dto.UserResponse;
@@ -39,12 +40,16 @@ public class UserService {
 
     public UserResponse getUser(Long id ) {
         UserResponse userResponse = new UserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS);
-        Optional<UserEntity> userOptional = userRepo.findById(id);
-        UserEntity user = Optional.ofNullable(userOptional).map( value -> value.get()).orElse( new UserEntity());
-        List<User> user1 = new ArrayList<>();
-        user1.add(new User(user.getId(),user.getUsername(), user.getEmail()));
-        userResponse.setUsers(user1);
-        return userResponse;
+        try{
+            Optional<UserEntity> userOptional = userRepo.findById(id);
+            UserEntity user = Optional.ofNullable(userOptional).map( value -> value.get()).orElse( new UserEntity());
+            List<User> user1 = new ArrayList<>();
+            user1.add(new User(user.getId(),user.getUsername(), user.getEmail()));
+            userResponse.setUsers(user1);
+            return userResponse;
+        }catch (Exception ex) {
+            throw new BaseException("User is not found ! ");
+        }
     }
 
 }
