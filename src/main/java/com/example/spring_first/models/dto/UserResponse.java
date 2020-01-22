@@ -5,7 +5,7 @@ import com.example.spring_first.models.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserResponse extends BaseResponse{
+public class UserResponse extends BaseResponse {
 
     private List<User> users;
 
