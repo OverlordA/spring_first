@@ -5,6 +5,8 @@ import com.example.spring_first.constants.ResponseStatusCode;
 import com.example.spring_first.models.User;
 import com.example.spring_first.models.dto.LoginUserRequest;
 import com.example.spring_first.models.dto.LoginUserResponse;
+import com.example.spring_first.models.dto.RegisterUserRequest;
+import com.example.spring_first.models.dto.UserResponse;
 import com.example.spring_first.models.entity.UserEntity;
 import com.example.spring_first.repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +38,12 @@ public class AuthService {
            return new LoginUserResponse(ResponseStatus.ERROR_STATUS, ResponseStatusCode.AUTH_FAILURE);
        }
     }
+    public UserResponse registerUser(RegisterUserRequest userRequest) throws NoSuchAlgorithmException {
+        String passwordHash = hashService.calculateHash(userRequest.getPassword());
+        UserEntity receivedUser = new UserEntity(userRequest.getUsername(), passwordHash, userRequest.getEmail());
+        UserEntity createdUser = usersRepo.save(receivedUser);
+        User respondedUser =  new User(createdUser);
+        return new UserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS, respondedUser);
+    }
+
 }

@@ -20,21 +20,10 @@ import java.util.Optional;
 public class UserService {
 
     private final UsersRepo userRepo;
-    private final HashService hashService;
 
     @Autowired
-    public UserService(UsersRepo userRepo, HashService hashService){
+    public UserService(UsersRepo userRepo){
         this.userRepo = userRepo;
-        this.hashService = hashService;
-    }
-
-
-    public UserResponse registerUser(RegisterUserRequest userRequest) throws NoSuchAlgorithmException {
-        String passwordHash = hashService.calculateHash(userRequest.getPassword());
-        UserEntity receivedUser = new UserEntity(userRequest.getUsername(), passwordHash, userRequest.getEmail());
-        UserEntity createdUser = userRepo.save(receivedUser);
-        User respondedUser =  new User(createdUser);
-        return new UserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS, respondedUser);
     }
 
     public UserResponse getAllUser(){
