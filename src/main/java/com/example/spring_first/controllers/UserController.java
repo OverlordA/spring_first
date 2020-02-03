@@ -4,6 +4,8 @@ import com.example.spring_first.constants.Paths;
 import com.example.spring_first.exceptions.BaseException;
 import com.example.spring_first.models.dto.UserResponse;
 import com.example.spring_first.models.entity.UserEntity;
+import com.example.spring_first.repository.UsersRepo;
+import com.example.spring_first.services.JwtService;
 import com.example.spring_first.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,15 +18,22 @@ import org.springframework.web.server.ResponseStatusException;
 public class UserController {
 
     private final UserService userService;
+    private final JwtService jwtService;
 
     @Autowired
-    public UserController(UserService userservice){
+    public UserController(UserService userservice, JwtService jwtService){
         this.userService = userservice;
+        this.jwtService = jwtService;
     }
 
     @RequestMapping(value = Paths.userGetAll, method= RequestMethod.GET)
-    public  ResponseEntity<UserResponse> getAllUsers(){
-        return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
+    public  ResponseEntity<UserResponse> getAllUsers(@RequestHeader("token") String token){
+        Boolean auth = jwtService.validateJWT(token);
+        if(auth){
+            return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
+        }else{
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

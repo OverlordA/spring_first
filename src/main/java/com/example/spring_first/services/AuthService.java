@@ -32,7 +32,7 @@ public class AuthService {
        UserEntity user = usersRepo.findByUsername(request.getUsername());
        String requestHas = hashService.calculateHash(request.getPassword());
        if(requestHas.equals(user.getPassword())){
-           String token = jwtService.calculateJWT(new User(user));
+           String token = jwtService.calculateJWT(new User(user), requestHas);
            return new LoginUserResponse(ResponseStatus.SUCCESS_STATUS, ResponseStatusCode.CODE_SUCCESS, token);
        }else{
            return new LoginUserResponse(ResponseStatus.ERROR_STATUS, ResponseStatusCode.AUTH_FAILURE);
