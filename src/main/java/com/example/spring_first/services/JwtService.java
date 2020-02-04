@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.TextCodec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -14,6 +15,9 @@ import java.util.Optional;
 
 @Service
 public class JwtService {
+
+    @Value("${jwt.secret}")
+    private String secret;
 
     private final UsersRepo usersRepo;
 
@@ -35,7 +39,7 @@ public class JwtService {
                 .claim("passwordHash", requestHas)
                 .claim("email",user.getEmail())
                 .claim("date", nowDate.toString())
-                .signWith(SignatureAlgorithm.HS256, TextCodec.BASE64.decode("testSecret"))
+                .signWith(SignatureAlgorithm.HS256, TextCodec.BASE64.decode(secret))
                 .compact();
         return jwtStr;
     }
@@ -43,7 +47,7 @@ public class JwtService {
     public Boolean validateJWT(String token ){
         // todo get token with db or Redis and compare
         String id =  Jwts.parser()
-                .setSigningKey(TextCodec.BASE64.decode("testSecret"))
+                .setSigningKey(TextCodec.BASE64.decode(secret))
                 .parseClaimsJws(token).getBody().get("id").toString();
         Long userId = Long.parseLong(id);
 
@@ -51,7 +55,7 @@ public class JwtService {
         UserEntity user = Optional.ofNullable(userOptional).map(value -> value.get()).orElse( new UserEntity());
 
         String tokenHash = Jwts.parser()
-                .setSigningKey(TextCodec.BASE64.decode("testSecret"))
+                .setSigningKey(TextCodec.BASE64.decode(secret))
                 .parseClaimsJws(token)
                 .getBody().get("passwordHash").toString();
 
