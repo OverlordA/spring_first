@@ -1,6 +1,7 @@
 package com.example.spring_first.filters;
 
-import org.springframework.stereotype.Component;
+import com.example.spring_first.services.JwtService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -10,6 +11,13 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = "/user/*")
 public class AuthFilter implements Filter {
+
+    private final JwtService jwtService;
+
+    @Autowired
+    public AuthFilter(JwtService jwtService){
+        this.jwtService = jwtService;
+    }
 
 
     @Override
@@ -22,8 +30,8 @@ public class AuthFilter implements Filter {
         System.out.println("doFilter() method is invoked");
         HttpServletRequest httpServletRequest = (HttpServletRequest)servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse)servletResponse;
-
-        System.out.println("Token: " + ((HttpServletRequest) servletRequest).getHeader("token"));
+        Boolean jwtIsValid = jwtService.validateJWT(httpServletRequest.getHeader("token"));
+        System.out.println("Jwt is valid = " + jwtIsValid);
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 
