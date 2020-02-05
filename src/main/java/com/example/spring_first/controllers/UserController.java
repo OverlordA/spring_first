@@ -3,8 +3,6 @@ package com.example.spring_first.controllers;
 import com.example.spring_first.constants.Paths;
 import com.example.spring_first.exceptions.BaseException;
 import com.example.spring_first.models.dto.UserResponse;
-import com.example.spring_first.models.entity.UserEntity;
-import com.example.spring_first.repository.UsersRepo;
 import com.example.spring_first.services.JwtService;
 import com.example.spring_first.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
