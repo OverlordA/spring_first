@@ -31,6 +31,7 @@ public class AuthFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest)servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse)servletResponse;
         Boolean jwtIsValid = jwtService.validateJWT(httpServletRequest.getHeader("token"));
+        // todo if jwt is invalid throws exception unauthorized
         System.out.println("Jwt is valid = " + jwtIsValid);
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
