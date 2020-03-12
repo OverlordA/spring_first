@@ -1,7 +1,11 @@
 package com.example.spring_first.dto.model;
 
 import com.example.spring_first.model.dao.entity.UserEntity;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class User {
     private Long id;
     private String username;
@@ -16,29 +20,5 @@ public class User {
         this.id = user.getId();
         this.username = user.getUsername();
         this.email = user.getEmail();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
