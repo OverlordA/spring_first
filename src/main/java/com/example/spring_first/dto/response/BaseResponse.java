@@ -1,5 +1,8 @@
 package com.example.spring_first.dto.response;
 
+import lombok.Getter;
+
+@Getter
 public class BaseResponse {
 
     private final String status;
@@ -8,13 +11,5 @@ public class BaseResponse {
     public BaseResponse(String status, Integer code) {
         this.status = status;
         this.code = code;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public Integer getCode() {
-        return code;
     }
 }
