@@ -1,12 +1,10 @@
-package com.example.spring_first.controllers;
+package com.example.spring_first.controller.v1;
 
 import com.example.spring_first.constants.Paths;
 import com.example.spring_first.constants.ResponseStatus;
 import com.example.spring_first.constants.ResponseStatusCode;
-import com.example.spring_first.models.User;
-import com.example.spring_first.models.dto.*;
-import com.example.spring_first.services.AuthService;
-import com.example.spring_first.services.UserService;
+import com.example.spring_first.dto.response.*;
+import com.example.spring_first.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

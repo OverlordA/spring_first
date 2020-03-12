@@ -1,4 +1,4 @@
-package com.example.spring_first.models.entity;
+package com.example.spring_first.model.dao.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

@@ -1,4 +1,4 @@
-package com.example.spring_first.exceptions;
+package com.example.spring_first.exception;
 
 public class BaseException extends RuntimeException {
     public BaseException(){

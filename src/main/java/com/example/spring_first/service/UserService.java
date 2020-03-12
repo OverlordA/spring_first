@@ -1,18 +1,15 @@
-package com.example.spring_first.services;
+package com.example.spring_first.service;
 
 import com.example.spring_first.constants.ResponseStatus;
 import com.example.spring_first.constants.ResponseStatusCode;
-import com.example.spring_first.exceptions.BaseException;
-import com.example.spring_first.models.User;
-import com.example.spring_first.models.dto.RegisterUserRequest;
-import com.example.spring_first.models.dto.UserResponse;
-import com.example.spring_first.models.entity.UserEntity;
+import com.example.spring_first.exception.BaseException;
+import com.example.spring_first.dto.model.User;
+import com.example.spring_first.dto.response.UserResponse;
+import com.example.spring_first.model.dao.entity.UserEntity;
 import com.example.spring_first.repository.UsersRepo;
-import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

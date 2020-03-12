@@ -1,4 +1,4 @@
-package com.example.spring_first.controllers;
+package com.example.spring_first.controller.v1;
 
 import com.example.spring_first.constants.Paths;
 import org.springframework.http.HttpHeaders;

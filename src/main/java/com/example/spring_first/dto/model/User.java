@@ -1,6 +1,6 @@
-package com.example.spring_first.models;
+package com.example.spring_first.dto.model;
 
-import com.example.spring_first.models.entity.UserEntity;
+import com.example.spring_first.model.dao.entity.UserEntity;
 
 public class User {
     private Long id;

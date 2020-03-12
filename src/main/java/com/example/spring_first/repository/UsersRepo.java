@@ -1,6 +1,6 @@
 package com.example.spring_first.repository;
 
-import com.example.spring_first.models.entity.UserEntity;
+import com.example.spring_first.model.dao.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

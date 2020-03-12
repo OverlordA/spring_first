@@ -1,6 +1,6 @@
-package com.example.spring_first.filters;
+package com.example.spring_first.security;
 
-import com.example.spring_first.services.JwtService;
+import com.example.spring_first.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;

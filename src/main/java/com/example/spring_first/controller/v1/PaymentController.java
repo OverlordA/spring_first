@@ -1,10 +1,10 @@
-package com.example.spring_first.controllers;
+package com.example.spring_first.controller.v1;
 
 import com.example.spring_first.constants.Paths;
 import com.example.spring_first.constants.ResponseStatus;
 import com.example.spring_first.constants.ResponseStatusCode;
-import com.example.spring_first.models.dto.BaseResponse;
-import com.example.spring_first.models.dto.PaymentRequest;
+import com.example.spring_first.dto.response.BaseResponse;
+import com.example.spring_first.dto.response.PaymentRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

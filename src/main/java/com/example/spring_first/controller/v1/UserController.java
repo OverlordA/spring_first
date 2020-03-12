@@ -1,10 +1,10 @@
-package com.example.spring_first.controllers;
+package com.example.spring_first.controller.v1;
 
 import com.example.spring_first.constants.Paths;
-import com.example.spring_first.exceptions.BaseException;
-import com.example.spring_first.models.dto.UserResponse;
-import com.example.spring_first.services.JwtService;
-import com.example.spring_first.services.UserService;
+import com.example.spring_first.exception.BaseException;
+import com.example.spring_first.dto.response.UserResponse;
+import com.example.spring_first.service.JwtService;
+import com.example.spring_first.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

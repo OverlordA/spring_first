@@ -1,4 +1,4 @@
-package com.example.spring_first.models.dto;
+package com.example.spring_first.dto.response;
 
 public class LoginUserRequest {
     private String username;

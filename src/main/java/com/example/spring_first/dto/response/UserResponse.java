@@ -1,6 +1,6 @@
-package com.example.spring_first.models.dto;
+package com.example.spring_first.dto.response;
 
-import com.example.spring_first.models.User;
+import com.example.spring_first.dto.model.User;
 
 import java.util.ArrayList;
 import java.util.List;

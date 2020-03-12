@@ -1,7 +1,7 @@
-package com.example.spring_first.services;
+package com.example.spring_first.service;
 
-import com.example.spring_first.models.User;
-import com.example.spring_first.models.entity.UserEntity;
+import com.example.spring_first.dto.model.User;
+import com.example.spring_first.model.dao.entity.UserEntity;
 import com.example.spring_first.repository.UsersRepo;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
